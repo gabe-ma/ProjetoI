@@ -1,6 +1,7 @@
 <html>
- <head>
-    <title>thiago lino</title>
+
+<head>
+    <title>Recicla Sampa LTDA</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -55,7 +56,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <a style="color: white" class="navbar-brand" href="index.html">Home</a>
+        <a style="color: white" class="navbar-brand" href="index.html">Recicla Sampa</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -63,10 +64,10 @@
         <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a style="color: white" class="nav-link" href="#">Colete Seu Lixo Empresarial</a>
+                    <a style="color: white" class="nav-link" href="empresa.html">Colete Seu Lixo Empresarial</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a style="color: white" class="nav-link" href="#">Colete Seu Lixo</a>
+                    <a style="color: white" class="nav-link" href="cliente.html">Colete Seu Lixo Domiciliar</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -78,7 +79,10 @@
     <div class="row">
         <div class="container">
             <div class="col-md-6">
+                <h2>Colete Seu Lixo Empresarial</h2>
+                <br>
                 <div id="map" style="width: 1000px; height: 500px; align-content: center"></div>
+                <br>
                 <div class="locationField">
                     <input id="autocomplete_from" class="autocomplete" placeholder="Sua Localização Atual" onFocus="geolocate_from()" type="text" />
                 </div>
@@ -90,6 +94,7 @@
         </div>
     </div>
     <br>
+
     <script>
         function init() {
             initMap();
@@ -150,7 +155,7 @@
                 map.fitBounds(place.geometry.viewport);
             } else {
                 map.setCenter(place.geometry.location);
-                map.setZoom(17); // Why 17? Because it looks good.
+                map.setZoom(5); // Why 17? Because it looks good.
             }
 
             marker_from.setPosition(place.geometry.location);
@@ -166,7 +171,7 @@
                 map.fitBounds(place.geometry.viewport);
             } else {
                 map.setCenter(place.geometry.location);
-                map.setZoom(17); // Why 17? Because it looks good.
+                map.setZoom(5); // Why 17? Because it looks good.
             }
 
             marker_to.setPosition(place.geometry.location);
