@@ -1,19 +1,61 @@
 <html>
-
-<head>
-    <title></title>
+ <head>
+    <title>thiago lino</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3A99ieqqCRb6oxsVUgYeoilF4ShtSjEA&callback=initMap" type="text/javascript"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <style>
+        .locationField,
+        #controls {
+            position: relative;
+            width: 480px;
+        }
+
+        .autocomplete {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 99%;
+        }
+
+        .label {
+            text-align: right;
+            font-weight: bold;
+            width: 100px;
+            color: #303030;
+            font-family: "Roboto";
+        }
+
+        .field {
+            width: 99%;
+        }
+
+        #locationField {
+            height: 20px;
+            margin-bottom: 2px;
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a id="c" class="navbar-brand" href="index.html">Home</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a style="color: white" class="navbar-brand" href="index.html">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,21 +63,10 @@
         <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a style="color: white" class="nav-link" href="#">Colete Seu Lixo Empresarial</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Ação</a>
-                        <a class="dropdown-item" href="#">Outra ação</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Algo mais aqui</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Desativado</a>
+                    <a style="color: white" class="nav-link" href="#">Colete Seu Lixo</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -44,35 +75,27 @@
             </form>
         </div>
     </nav>
-    <br>
     <div class="row">
         <div class="container">
             <div class="col-md-6">
-                <iframe width="900" height="450" frameborder="0" style="border-radius: 20px" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB3A99ieqqCRb6oxsVUgYeoilF4ShtSjEA
-    &q=São+Paulo,São+Paulo+SP" allowfullscreen>
-                </iframe>
-
-                <form id="distance_form">
-                    <br>
-                    <div class="form-group"><label>Origin: </label> <input class="form-control" id="from_places" placeholder="Enter a location" /> <input id="origin" name="origin" required="" type="hidden" /></div>
-
-                    <div class="form-group"><label>Destination: </label> <input class="form-control" id="to_places" placeholder="Enter a location" /> <input id="destination" name="destination" required="" type="hidden" /></div>
-                    <input class="btn btn-primary" type="submit" value="Calculate" />
-                </form>
-
-                <div id="result">
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">Distance is Km:</li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">IN TEXT:</li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">IN MINUTES:</li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">FROM:</li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">TO:</li>
-                    </ul>
+                <div id="map" style="width: 1000px; height: 500px; align-content: center"></div>
+                <div class="locationField">
+                    <input id="autocomplete_from" class="autocomplete" placeholder="Sua Localização Atual" onFocus="geolocate_from()" type="text" />
+                </div>
+                <br />
+                <div class="locationField">
+                    <input id="autocomplete_to" class="autocomplete" placeholder="Sua Próxima Coleta" onFocus="geolocate_to()" type="text" />
                 </div>
             </div>
         </div>
     </div>
     <br>
+    <script>
+        function init() {
+            initMap();
+            initAutocomplete();
+        }
+    </script>
     <script>
         var map;
 
@@ -85,71 +108,103 @@
                 zoom: 10
             });
         }
-        $(function() {
-            // add input listeners
-            google.maps.event.addDomListener(window, 'load', function() {
-                var from_places = new google.maps.places.Autocomplete(document.getElementById('from_places'));
-                var to_places = new google.maps.places.Autocomplete(document.getElementById('to_places'));
-
-                google.maps.event.addListener(from_places, 'place_changed', function() {
-                    var from_place = from_places.getPlace();
-                    var from_address = from_place.formatted_address;
-                    $('#origin').val(from_address);
-                });
-
-                google.maps.event.addListener(to_places, 'place_changed', function() {
-                    var to_place = to_places.getPlace();
-                    var to_address = to_place.formatted_address;
-                    $('#destination').val(to_address);
-                });
-
-            });
-            // calculate distance
-            function calculateDistance() {
-                var origin = $('#origin').val();
-                var destination = $('#destination').val();
-                var service = new google.maps.DistanceMatrixService();
-                service.getDistanceMatrix({
-                    origins: [origin],
-                    destinations: [destination],
-                    travelMode: google.maps.TravelMode.DRIVING,
-                    unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
-                    // unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
-                    avoidHighways: false,
-                    avoidTolls: false
-                }, callback);
-            }
-            // get distance results
-            function callback(response, status) {
-                if (status != google.maps.DistanceMatrixStatus.OK) {
-                    $('#result').html(err);
-                } else {
-                    var origin = response.originAddresses[0];
-                    var destination = response.destinationAddresses[0];
-                    if (response.rows[0].elements[0].status === "ZERO_RESULTS") {
-                        $('#result').html("Better get on a plane. There are no roads between " + origin + " and " + destination);
-                    } else {
-                        var distance = response.rows[0].elements[0].distance;
-                        var duration = response.rows[0].elements[0].duration;
-                        console.log(response.rows[0].elements[0].distance);
-                        var distance_in_kilo = distance.value / 1000; // the kilom
-                        var distance_in_mile = distance.value / 1609.34; // the mile
-                        var duration_text = duration.text;
-                        var duration_value = duration.value;
-                        $('#in_mile').text(distance_in_mile.toFixed(2));
-                        $('#in_kilo').text(distance_in_kilo.toFixed(2));
-                        $('#duration_text').text(duration_text);
-                        $('#duration_value').text(duration_value);
-                        $('#from').text(origin);
-                        $('#to').text(destination);
-                    }
-                }
-            }
-            // print results on submit the form
-            $('#distance_form').submit(function(e) {
-                e.preventDefault();
-                calculateDistance();
-            });
-        });
     </script>
+    <script>
+        var placeSearch, autocomplete_from, autocomplete_to, marker_from, marker_to;
+
+        function initAutocomplete() {
+            marker_from = new google.maps.Marker({
+                map: map,
+                anchorPoint: new google.maps.Point(0, -29)
+            });
+            marker_to = new google.maps.Marker({
+                map: map,
+                anchorPoint: new google.maps.Point(0, -29)
+            });
+            // Create the autocomplete object, restricting the search predictions to
+            // geographical location types.
+            autocomplete_from = new google.maps.places.Autocomplete(
+                document.getElementById('autocomplete_from'), {
+                    types: ['geocode']
+                });
+            autocomplete_to = new google.maps.places.Autocomplete(
+                document.getElementById('autocomplete_to'), {
+                    types: ['geocode']
+                });
+            // Avoid paying for data that you don't need by restricting the set of
+            // place fields that are returned to just the address components.
+            autocomplete_from.setFields(['address_component', 'geometry']);
+            autocomplete_to.setFields(['address_component', 'geometry']);
+            // When the user selects an address from the drop-down, populate the
+            // address fields in the form.
+            autocomplete_from.addListener('place_changed', fillInAddress_from);
+            autocomplete_to.addListener('place_changed', fillInAddress_to);
+        }
+
+        function fillInAddress_from() {
+            // Get the place details from the autocomplete object.
+            var place = autocomplete_from.getPlace();
+            marker_from.setVisible(false);
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17); // Why 17? Because it looks good.
+            }
+
+            marker_from.setPosition(place.geometry.location);
+            marker_from.setVisible(true);
+        }
+
+        function fillInAddress_to() {
+            // Get the place details from the autocomplete object.
+            var place = autocomplete_to.getPlace();
+            marker_to.setVisible(false);
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17); // Why 17? Because it looks good.
+            }
+
+            marker_to.setPosition(place.geometry.location);
+            marker_to.setVisible(true);
+        }
+        // Bias the autocomplete object to the user's geographical location,
+        // as supplied by the browser's 'navigator.geolocation' object.
+        function geolocate_from() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var geolocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    var circle = new google.maps.Circle({
+                        center: geolocation,
+                        radius: position.coords.accuracy
+                    });
+                    autocomplete_from.setBounds(circle.getBounds());
+                });
+            }
+        }
+
+        function geolocate_to() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var geolocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    var circle = new google.maps.Circle({
+                        center: geolocation,
+                        radius: position.coords.accuracy
+                    });
+                    autocomplete_to.setBounds(circle.getBounds());
+                });
+            }
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3A99ieqqCRb6oxsVUgYeoilF4ShtSjEA&libraries=places&callback=init" type="text/javascript"></script>
 </body></html>
