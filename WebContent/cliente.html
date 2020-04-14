@@ -79,137 +79,117 @@
     <div class="row">
         <div class="container">
             <div class="col-md-6">
-                <h2>Recicle Seu Lixo Domiciliar</h2>
+                <h2 style="font-family: Georgia, Arial">Recicle Seu Lixo Domiciliar</h2>
                 <br>
+                <h5 style="font-family: Georgia, Arial">Pontos de Coleta de Lixo</h5>
                 <div id="map" style="width: 1000px; height: 500px; align-content: center"></div>
                 <br>
-                <div class="locationField">
-                    <input id="autocomplete_from" class="autocomplete" placeholder="Sua Localização Atual" onFocus="geolocate_from()" type="text" />
-                </div>
-                <br />
-                <div class="locationField">
-                    <input id="autocomplete_to" class="autocomplete" placeholder="Sua Próxima Coleta" onFocus="geolocate_to()" type="text" />
-                </div>
             </div>
         </div>
     </div>
     <br>
 
     <script>
-        function init() {
-            initMap();
-            initAutocomplete();
-        }
-    </script>
-    <script>
         var map;
 
         function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: -23.547758,
-                    lng: -46.629860
+            map = new google.maps.Map(
+                document.getElementById('map'), {
+                    center: new google.maps.LatLng(-23.552039, -46.597617),
+                    zoom: 16
+                });
+
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: -23.552039,
+                    lng: -46.597617
                 },
-                zoom: 10
+                map: map
             });
+
+            var iconBase =
+                'https://developers.google.com/maps/documentation/javascript/examples/full/images/';
+
+            var icons = {
+                parking: {
+                    icon: iconBase + 'parking_lot_maps.png'
+                },
+                library: {
+                    icon: iconBase + 'library_maps.png'
+                },
+                info: {
+                    icon: iconBase + 'info-i_maps.png'
+                }
+            };
+
+            var features = [{
+                position: new google.maps.LatLng(-23.551391, -46.596665),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.549976, -46.595804),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.553203, -46.593192),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.555052, -46.595778),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.558730, -46.597913),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.551665, -46.598249),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.551148, -46.597558),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.555402, -46.601779),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.556297, -46.601597),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.549786, -46.592618),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.551087, -46.601391),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.552189, -46.602185),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.549055, -46.599058),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.550953, -46.594417),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.553284, -46.593387),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.548219, -46.592539),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.554658, -46.592658),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.555199, -46.602861),
+                type: 'parking'
+            }, {
+                position: new google.maps.LatLng(-23.553917, -46.591473),
+                type: 'parking'
+            }];
+
+            // Create markers.
+            for (var i = 0; i < features.length; i++) {
+                var marker = new google.maps.Marker({
+                    position: features[i].position,
+                    icon: icons[features[i].type].icon,
+                    map: map
+                });
+            };
         }
     </script>
-    <script>
-        var placeSearch, autocomplete_from, autocomplete_to, marker_from, marker_to;
-
-        function initAutocomplete() {
-            marker_from = new google.maps.Marker({
-                map: map,
-                anchorPoint: new google.maps.Point(0, -29)
-            });
-            marker_to = new google.maps.Marker({
-                map: map,
-                anchorPoint: new google.maps.Point(0, -29)
-            });
-            // Create the autocomplete object, restricting the search predictions to
-            // geographical location types.
-            autocomplete_from = new google.maps.places.Autocomplete(
-                document.getElementById('autocomplete_from'), {
-                    types: ['geocode']
-                });
-            autocomplete_to = new google.maps.places.Autocomplete(
-                document.getElementById('autocomplete_to'), {
-                    types: ['geocode']
-                });
-            // Avoid paying for data that you don't need by restricting the set of
-            // place fields that are returned to just the address components.
-            autocomplete_from.setFields(['address_component', 'geometry']);
-            autocomplete_to.setFields(['address_component', 'geometry']);
-            // When the user selects an address from the drop-down, populate the
-            // address fields in the form.
-            autocomplete_from.addListener('place_changed', fillInAddress_from);
-            autocomplete_to.addListener('place_changed', fillInAddress_to);
-        }
-
-        function fillInAddress_from() {
-            // Get the place details from the autocomplete object.
-            var place = autocomplete_from.getPlace();
-            marker_from.setVisible(false);
-            // If the place has a geometry, then present it on a map.
-            if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-            } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(5); // Why 17? Because it looks good.
-            }
-
-            marker_from.setPosition(place.geometry.location);
-            marker_from.setVisible(true);
-        }
-
-        function fillInAddress_to() {
-            // Get the place details from the autocomplete object.
-            var place = autocomplete_to.getPlace();
-            marker_to.setVisible(false);
-            // If the place has a geometry, then present it on a map.
-            if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-            } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(5); // Why 17? Because it looks good.
-            }
-
-            marker_to.setPosition(place.geometry.location);
-            marker_to.setVisible(true);
-        }
-        // Bias the autocomplete object to the user's geographical location,
-        // as supplied by the browser's 'navigator.geolocation' object.
-        function geolocate_from() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var geolocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    var circle = new google.maps.Circle({
-                        center: geolocation,
-                        radius: position.coords.accuracy
-                    });
-                    autocomplete_from.setBounds(circle.getBounds());
-                });
-            }
-        }
-
-        function geolocate_to() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var geolocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    var circle = new google.maps.Circle({
-                        center: geolocation,
-                        radius: position.coords.accuracy
-                    });
-                    autocomplete_to.setBounds(circle.getBounds());
-                });
-            }
-        }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3A99ieqqCRb6oxsVUgYeoilF4ShtSjEA&libraries=places&callback=init" type="text/javascript"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3A99ieqqCRb6oxsVUgYeoilF4ShtSjEA&libraries=places&callback=initMap" type="text/javascript"></script>
 </body></html>
