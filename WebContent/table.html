@@ -1,0 +1,154 @@
+<html>
+
+<head>
+    <title>Recicla Sampa LTDA</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="assets/css/index.css" rel="stylesheet">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a style="color: white" class="navbar-brand" href="index.html">Recicla Sampa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a style="color: white" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Para Sua Empresa
+                    </a>
+                    <div style="background-color: dimgray" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a style="color: white" class="dropdown-item" href="empresa.html">Mapa de Coleta</a>
+                        <a style="color: white" class="dropdown-item" href="table.html">Materiais Recicláveis</a>
+                        <div class="dropdown-divider"></div>
+                        <a style="color: white" class="dropdown-item" href="#">Algo mais aqui</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a style="color: white" class="nav-link" href="cliente.html">Recicle Seu Lixo Domiciliar</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+            </form>
+        </div>
+    </nav>
+    <div class="max-w-6xl m-auto">
+        <div class="flex items-center justify-between pb-4 mb-4 border-b">
+            <h1>Table Pag</h1>
+        </div>
+        <table id="mytable" class="table table-striped table-bordered" style=" width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                //inserir aqui a tabela
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var x = 0;
+            var table = $('#mytable').DataTable({
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [{
+                    className: "buttons-ordenar",
+                    text: 'ORDENAR POR CADASTRO',
+                    align: "left",
+                    action: function() {
+                        x = x + 1;
+                        if (x % 2 != 0) {
+                            table.order([0, 'asc']).draw();
+                            showDialogue("Ordem crescente", "warning", 1000);
+                            $("#a").show();
+                        } else {
+                            table.order([0, 'desc']).draw();
+                            showDialogue("Ordem decrescente", "info", 1000);
+                        }
+                    }
+                }],
+                select: {
+
+                },
+                "paging": false,
+                "bInfo": false,
+                "oLanguage": {
+                    "sEmptyTable": "Nenhum registro encontrado na tabela",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar: "
+                },
+            });
+
+            $('#ordenar').click(function() {
+                table.order([0, 'asc']).draw();
+            });
+
+            $('#admuser').on('change', function() {
+                table.columns(6).search(this.value).draw();
+            });
+
+            $('#mySearchText').keyup(function() {
+                table.search($('#mySearchText').val()).draw();
+                if ($(this).val().length > 0) {
+                    if ($('.dataTables_empty').length == 0) {
+                        $(this).css("border-color", "green");
+                    } else {
+                        $(this).css("border-color", "red");
+                    }
+                } else {
+                    $(this).css("border-color", "rgb(132, 46, 176)");
+                }
+            })
+        });
+
+        function showDialogue(mensagem, tipo, tempo) {
+            var dialogoId = new Date().getTime();
+
+            if (!tipo) {
+                var tipo = "info";
+            }
+            var cssMessage = "display: block; position: fixed; top: 0; left: 35%; right: 35%; width: 12%; padding-top: 165px; z-index: 999";
+            var cssInner = "margin: 0 auto; box-shadow: 1px 1px 5px black;";
+
+            var dialogContainer = $('<div>').attr('id', dialogId).addClass('message'),
+                alert = $('<div>').addClass('alert alert-' + tipo + ' alert-dismissable inner').text(mensagem);
+            dialogContainer.append(alert);
+
+            $('body').append(dialogo);
+            var dialogoElement = $('#' + dialogoId);
+            dialogoElement.hide();
+            dialogoElement.fadeIn(200);
+
+            setTimeout(function() {
+                dialogoElement.fadeOut(300, function() {
+                    $(this).remove();
+                });
+            }, tempo);
+        }
+    </script>
+</body></html>
