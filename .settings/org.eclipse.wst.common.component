@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="ProjetoI">
+    <wb-module deploy-name="ProjetoX">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="ProjetoI"/>
-        <property name="java-output-path" value="/ProjetoI/build/classes"/>
+        <property name="context-root" value="ProjetoX"/>
+        <property name="java-output-path" value="/ProjetoX/build/classes"/>
     </wb-module>
 </project-modules>
