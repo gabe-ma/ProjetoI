@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import model.LocaisReciclagem;
 import model.TipoDeLixo;
@@ -15,7 +16,7 @@ public class LocaisReciclagemDAO {
 	ArrayList<LocaisReciclagem> localLista;
 	LocaisReciclagem local;
 	
-	public LocaisReciclagem carregar(int id) {
+	public List<LocaisReciclagem> carregar(int id) {
 		local = new LocaisReciclagem();
 		localLista = new ArrayList<LocaisReciclagem>();
 		String sqlSelect = "SELECT rua, numero, bairro, telefone, quantidade_lixo_toneladas FROM locais_reciclagem WHERE idlixos_reciclados = ?";
@@ -45,7 +46,7 @@ public class LocaisReciclagemDAO {
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
-		return local;
+		return localLista;
 	}
 	
 }

@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import model.LocaisReciclagem;
 @WebServlet("/ListagemLocais.do")
 public class ListagemLocaisController extends HttpServlet {
 	private static ArrayList<LocaisReciclagem> localLista;
+	private LocaisReciclagemDAO dao;
 
 	public static void setLocaisReciclagem(ArrayList<LocaisReciclagem> lista) {
 		localLista = lista;
@@ -29,7 +31,8 @@ public class ListagemLocaisController extends HttpServlet {
 	 */
 	public ListagemLocaisController() {
 		super();
-		// TODO Auto-generated constructor stub
+		dao = new LocaisReciclagemDAO(); 
+		
 	}
 
 	/**
@@ -38,8 +41,8 @@ public class ListagemLocaisController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		
 	}
 
 	/**
@@ -48,15 +51,15 @@ public class ListagemLocaisController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		for (LocaisReciclagem item : localLista) {
-			PrintWriter out = response.getWriter();
-			out.println("Nome: " + item.getRua());
-			out.println("Número: " + item.getNumero());
-			out.println("Bairro: " + item.getBairro());
-			out.println("Telefone: " + item.getTelefone());
-			out.println("Quantidade de lixo: " + item.getQuantLixo());
-			out.close();
-		}
+		
+		int id_lixo = Integer.parseInt(request.getParameter("tipo"));
+		
+		List<LocaisReciclagem> localList = dao.carregar(id_lixo);
+		
+		request.setAttribute("localList", localList);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/procurarLocais.jsp");
+		dispatcher.forward(request, response);
+		
 	}
 }

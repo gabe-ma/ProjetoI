@@ -53,5 +53,4 @@ public class ManterLocaisController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/ListagemLocais.do");
 		dispatcher.forward(request, response);
 	}
-
 }
