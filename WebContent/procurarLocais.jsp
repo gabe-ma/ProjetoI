@@ -1,3 +1,4 @@
+<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,19 +95,36 @@
 	<br>
 	<div class="row">
 		<div class="container">
-			<div class="col-md-6">
-				<form action="<%=request.getContextPath()%>/ManterLocais.do"
-					method=post>
-					<div class="form-group">
-						<label for="exampleInputEmail1"><h3>Tipo de lixo:</h3></label> <input
-							type="text" name="tipo" class="form-control"> <br>
-						<button class="btn btn-outline-success my-2 my-sm-0" name="tipo"
-							type="submit">Pesquisar ID do Lixo</button>
-					</div>
-					<h4>Opções: (8)Orgânico (9)Vidro (10)Alumínio (11)Papel ou
-						Papelão (12)Metal (13)Baterias (14)Plástico</h4>
-				</form>
-			</div>
+			<form action="<%=request.getContextPath()%>/ManterLocais.do"
+				method=post>
+				<div class="form-group">
+					<label for="exampleInputEmail1"><h3>Tipo de lixo:</h3></label> <input
+						type="text" name="tipo" class="form-control"> <br>
+					<button class="btn btn-outline-success my-2 my-sm-0" name="tipo"
+						type="submit">Pesquisar ID do Lixo</button>
+				</div>
+				<h4>Opções: (8)Orgânico (9)Vidro (10)Alumínio (11)Papel ou
+					Papelão (12)Metal (13)Baterias (14)Plástico</h4>
+			</form>
+
+			<table style="background-color: white;" class="table table-striped">
+				<tr style="background-color: #F0F8FF;">
+					<th><h3>Rua</h3></th>
+					<th><h3>Nº</h3></th>
+					<th><h3>Bairro</h3></th>
+					<th><h3>Telefone</h3></th>
+					<th><h3>Quant Lixo</h3></th>
+				</tr>
+				<jstl:forEach var="local" items="${localList}">
+					<tr>
+						<td>${local.rua}</td>
+						<td>${local.numero}</td>
+						<td>${local.bairro}</td>
+						<td>${local.telefone}</td>
+						<td>${local.quantLixo}</td>
+					</tr>
+				</jstl:forEach>
+			</table>
 		</div>
 	</div>
 	<%-- <%= for () %>> --%>
