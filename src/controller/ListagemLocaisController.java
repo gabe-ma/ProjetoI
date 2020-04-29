@@ -51,7 +51,10 @@ public class ListagemLocaisController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		int id_lixo = Integer.parseInt(request.getParameter("tipo"));
+		int id_lixo = 0;
+		if(request.getParameter("tipo") != null) {
+			id_lixo = Integer.parseInt(request.getParameter("tipo"));
+		}
 		
 		List<LocaisReciclagem> localList = dao.carregar(id_lixo);
 		

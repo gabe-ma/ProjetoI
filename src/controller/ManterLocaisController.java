@@ -42,7 +42,10 @@ public class ManterLocaisController extends HttpServlet {
 		LocaisReciclagem localweb = new LocaisReciclagem();
 		LocaisReciclagemDAO dao = new LocaisReciclagemDAO();
 		
-		int id_lixo = Integer.parseInt(request.getParameter("tipo"));
+		int id_lixo = 0;
+		if(request.getParameter("tipo") != null) {
+			id_lixo = Integer.parseInt(request.getParameter("tipo"));
+		}
 
 		localweb.setIdLixoReciclado(id_lixo);
 		
