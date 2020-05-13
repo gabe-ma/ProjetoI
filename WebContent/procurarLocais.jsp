@@ -98,8 +98,9 @@
 			<form action="<%=request.getContextPath()%>/ManterLocais.do"
 				method=post>
 				<div class="form-group">
-					<label
-						for="tipo">Escolha um tipo de lixo:</label> <select name="tipo" id="tipo">
+
+					<label for="tipo">Escolha um tipo de lixo:</label> <select
+						name="tipo" id="tipo">
 						<option value="1">Plástico</option>
 						<option value="2">Vidro</option>
 						<option value="3">Alumínio</option>

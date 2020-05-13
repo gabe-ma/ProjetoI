@@ -1,8 +1,16 @@
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page import="model.Carteira" %>
+<%@page import="model.Usuarios" %>
+<%@page import="model.ContaBancaria" %>
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
-<title>Recicla Sampa LTDA</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carteira Digital</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -21,10 +29,6 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <link href="assets/css/index.css" rel="stylesheet">
-<style>
-/* Always set the map height explicitly to define the size of the div
-     * element that contains the map. */
-</style>
 </head>
 
 <body>
@@ -64,22 +68,29 @@
 			</form>
 		</div>
 	</nav>
-	<h1>Login</h1>
-	<form action="LoginUsuario.do" method="post">
-		<div class="Login">
-			<label for="email">E-mail</label><input type="email"
-				class="form-control" name="email" id="email" required
-				maxlength="100" placeholder="Insira seu email"> 
-			<label for="senha">Senha</label><input
-				type="password" class="form-control" name="senha" id="senha"
-				required maxlength="100" placeholder="Insira sua senha">
-
-			<button type="submit" class="btn btn-primary" name="acao"
-				value="Criar">Salvar</button>
-			<a href="index.html" class="btn btn-default">Cancelar</a>
-		</div>
-	</form>
+    <%Carteira cart = (Carteira)request.getAttribute("cart"); %>
+        <!-- Barra superior com os menus de navegaÃ§Ã£o -->
+	<%ContaBancaria bank = (ContaBancaria)request.getAttribute("bank"); %>
 	
-	<p>Você não tem um cadastro? <a href="cadastroUsuario.html">Cadastre-se aqui</a></p>
+       <h3>Parabéns seu dinheiro foi retirado com sucesso. Após 1 dia útil ele já estará na sua conta</h3>
+        <div id="main" class="container">
+            <h3 class="page-header">Carteira Digital</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <p><strong>Seu saldo atual é de: </strong>
+                    </p>
+                    <p>
+                        R$<%=cart.getSaldo() %>
+                    </p>
+                </div>
+            </div>
+            <div id="actions" class="row">
+                <div class="col-md-12">
+                    <a href="Logout.do" class="btn btn-default">Voltar</a>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
