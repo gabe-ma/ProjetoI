@@ -1,8 +1,10 @@
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Procurar locais de reciclagem</title>
+<title>Listar relatórios</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -96,47 +98,40 @@
 			</form>
 		</div>
 	</nav>
-	<br>
-	<div class="row">
-		<div style="background-color: #F0F8FF; border-radius: 15px" class="container">
-			<form action="<%=request.getContextPath()%>/ManterLocais.do"
+	
+	<form action="<%=request.getContextPath()%>/ManterRelatorio.do"
 				method=post>
 				<br>
 				<div class="form-group">
-					<label for="tipo">Escolha um tipo de lixo:</label> <select
+					<label for="tipo">Escolha um bairro:</label> <select
 						name="tipo" id="tipo">
-						<option value="1">Plástico</option>
-						<option value="2">Vidro</option>
-						<option value="3">Alumínio</option>
-						<option value="4">Papel ou Papelão</option>
-						<option value="5">Metal</option>
-						<option value="6">Baterias</option>
-						<option value="7">Orgânico</option>
+						<option value="Mooca">Mooca</option>
+						<option value="Vila Leopoldina">Vila Leopoldina</option>
+						<option value="Presidente Altino">Presidente Altino</option>
+						<option value="Itaquera">Itaquera</option>
+						<option value="Carapicuíba">Carapicuíba</option>
 					</select>
 					<button class="btn btn-outline-success my-2 my-sm-0" name="locais"
-						type="submit">Pesquisar ID do Lixo</button>
+						type="submit">Listar relatórios</button>
 				</div>
 			</form>
-			<table style="background-color: white;" class="table table-striped">
+			
+		<table style="background-color: white;" class="table table-striped">
 				<tr style="background-color: #F0F8FF;">
-					<th><h3>Rua</h3></th>
-					<th><h3>Nº</h3></th>
 					<th><h3>Bairro</h3></th>
-					<th><h3>Telefone</h3></th>
-					<th><h3>Quant Lixo</h3></th>
+					<th><h3>Quantidade de Lixo(t)</h3></th>
+					<th><h3>Maior lixo reciclado</h3></th>
+					<th><h3>Descrição</h3></th>
 				</tr>
-				<jstl:forEach var="local" items="${localList}">
+				<jstl:forEach var="relatorio" items="${relatorioLista}">
 					<tr>
-						<td>${local.rua}</td>
-						<td>${local.numero}</td>
-						<td>${local.bairro}</td>
-						<td>${local.telefone}</td>
-						<td>${local.quantLixo}</td>
+						<td>${relatorio.bairro}</td>
+						<td>${relatorio.qntLixo}</td>
+						<td>${relatorio.tipoLixo.tipo_de_lixo}</td>
+						<td>${relatorio.descricao}</td>
 					</tr>
 				</jstl:forEach>
 			</table>
-			<br>
-		</div>
-	</div>
+
 </body>
 </html>
