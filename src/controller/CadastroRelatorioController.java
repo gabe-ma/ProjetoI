@@ -9,23 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.CarteiraDAO;
-import dao.ContaBancariaDAO;
-import model.Carteira;
-import model.ContaBancaria;
-import model.Usuarios;
+import dao.RelatorioDAO;
+import model.Relatorio;
 
 /**
- * Servlet implementation class RetirarDinheiroController
+ * Servlet implementation class CadastroRelatorioController
  */
-@WebServlet("/RetirarDinheiro.do")
-public class RetirarDinheiroController extends HttpServlet {
+@WebServlet("/CadastroRelatorio.do")
+public class CadastroRelatorioController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RetirarDinheiroController() {
+    public CadastroRelatorioController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +31,6 @@ public class RetirarDinheiroController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
@@ -42,22 +38,22 @@ public class RetirarDinheiroController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Usuarios usuario = (Usuarios) request.getSession().getAttribute("usuario");
-		CarteiraDAO dao = new CarteiraDAO();
-		Carteira cart = new Carteira();
 		
-		dao.retirarDinheiro(usuario);
+		String pBairro = request.getParameter("bairro");
+		int pQntLixo = Integer.parseInt(request.getParameter("qntLixo"));
+		int pMaiorTipoLixo = Integer.parseInt(request.getParameter("tipo"));
+		String pDescricao = request.getParameter("descricao");
 		
-		dao.verificarSaldo(usuario, cart);
+		Relatorio relatorio = new Relatorio();
+		RelatorioDAO dao = new RelatorioDAO();
+		relatorio.setBairro(pBairro);
+		relatorio.setQntLixo(pQntLixo);
+		relatorio.setMaiorTipoLixo(pMaiorTipoLixo);
+		relatorio.setDescricao(pDescricao);
 		
-		request.setAttribute("cart", cart);
+		dao.criar(relatorio);
 		
-		ContaBancariaDAO Cdao = new ContaBancariaDAO();
-		ContaBancaria bank = Cdao.carregar(usuario.getContaBancaria());
-		
-		request.setAttribute("bank", bank);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/dinheiroRetirado.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/listarRelatorio.jsp");
 		dispatcher.forward(request, response);
 	}
 

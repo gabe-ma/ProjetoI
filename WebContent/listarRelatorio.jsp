@@ -1,14 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page import="model.Usuarios"%>
+<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Usuário logado</title>
+<title>Listar relatórios</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -28,8 +24,39 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <link href="assets/css/index.css" rel="stylesheet">
-</head>
+<link type="text/css" rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<style>
+.locationField, #controls {
+	position: relative;
+	width: 480px;
+}
 
+.autocomplete {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 99%;
+}
+
+.label {
+	text-align: right;
+	font-weight: bold;
+	width: 100px;
+	color: #303030;
+	font-family: "Roboto";
+}
+
+.field {
+	width: 99%;
+}
+
+#locationField {
+	height: 20px;
+	margin-bottom: 2px;
+}
+</style>
+</head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
 		<a style="color: white" class="navbar-brand" href="index.html">Recicla
@@ -71,34 +98,40 @@
 			</form>
 		</div>
 	</nav>
- 	<br>
-	<div class="row">
-		<div style="background-color: #F0F8FF; border-radius: 15px"
-			class="container">
-			<%
-				Usuarios usuario = (Usuarios) request.getAttribute("usuario");
-			%>
-			<!-- Container Principal -->
-			<br>
-			<h3 class="page-header">Visualizar login</h3>
-			<div class="row">
-				<div class="col-md-12">
-					<p>
-						<strong>Bem vindo:</strong>
-						<%=usuario.getNome()%>
-					</p>
+	
+	<form action="<%=request.getContextPath()%>/ManterRelatorio.do"
+				method=post>
+				<br>
+				<div class="form-group">
+					<label for="tipo">Escolha um bairro:</label> <select
+						name="tipo" id="tipo">
+						<option value="Mooca">Mooca</option>
+						<option value="Vila Leopoldina">Vila Leopoldina</option>
+						<option value="Presidente Altino">Presidente Altino</option>
+						<option value="Itaquera">Itaquera</option>
+						<option value="Carapicuíba">Carapicuíba</option>
+					</select>
+					<button class="btn btn-outline-success my-2 my-sm-0" name="locais"
+						type="submit">Listar relatórios</button>
 				</div>
-			</div>
-			<a href="ListarCarteira.do" class="btn btn-success">Verificar
-				saldo da carteira digital</a> <a href="Logout.do" class="btn btn-danger">Voltar</a>
-			<br>
-			<br>
-			<div id="actions" class="row">
-				<div class="col-md-12"></div>
-			</div>
-		</div>
-	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+			</form>
+			
+		<table style="background-color: white;" class="table table-striped">
+				<tr style="background-color: #F0F8FF;">
+					<th><h3>Bairro</h3></th>
+					<th><h3>Quantidade de Lixo(t)</h3></th>
+					<th><h3>Maior lixo reciclado</h3></th>
+					<th><h3>Descrição</h3></th>
+				</tr>
+				<jstl:forEach var="relatorio" items="${relatorioLista}">
+					<tr>
+						<td>${relatorio.bairro}</td>
+						<td>${relatorio.qntLixo}</td>
+						<td>${relatorio.tipoLixo.tipo_de_lixo}</td>
+						<td>${relatorio.descricao}</td>
+					</tr>
+				</jstl:forEach>
+			</table>
+
 </body>
 </html>

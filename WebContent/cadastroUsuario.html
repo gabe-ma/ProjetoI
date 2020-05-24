@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Cadastro</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -24,13 +24,13 @@
 <link href="assets/css/index.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
 		<a style="color: white" class="navbar-brand" href="index.html">Recicla
 			Sampa</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#conteudoNavbarSuportado"
 			aria-controls="conteudoNavbarSuportado" aria-expanded="false"
-			aria-label="Alterna navegação">
+			aria-label="Alterna navegaç£¯">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
@@ -44,7 +44,7 @@
 						aria-labelledby="navbarDropdown">
 						<a style="color: white" class="dropdown-item" href="empresa.html">Mapa
 							de Coleta</a> <a style="color: white" class="dropdown-item"
-							href="procurarLocais.jsp">Materiais Recicláveis</a>
+							href="procurarLocais.jsp">Materiais ReciclÃ¡veis</a>
 						<div class="dropdown-divider"></div>
 						<a style="color: white" class="dropdown-item" href="#">Algo
 							mais aqui</a>
@@ -52,6 +52,10 @@
 				<li class="nav-item dropdown"><a style="color: white"
 					class="nav-link" href="cliente.html">Recicle Seu Lixo
 						Domiciliar</a></li>
+				<li class="nav-item dropdown"><a style="color: white"
+					class="nav-link" href="cadastroRelatorio.html">Cadastrar relatÃ³rio</a></li>
+				<li class="nav-item dropdown"><a style="color: white"
+					class="nav-link" href="listarRelatorio.jsp">Listar relatÃ³rios</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
@@ -60,37 +64,48 @@
 			</form>
 		</div>
 	</nav>
+	<br>
+	<div class="row">
+		<div style="background-color: #F0F8FF; border-radius: 15px" class="container">
+		<h1>Cadastre-se!</h1>
+		<br>
+			<form action="CadastroUsuario.do" method=post>
+				<label for="nome">Nome</label><input type="nome"
+					class="form-control" name="nome" id="nome" required maxlength="100"
+					placeholder="Insira seu nome"> <label for="email">E-mail</label><input
+					type="email" class="form-control" name="email" id="email" required
+					maxlength="100" placeholder="Insira seu email"> <label
+					for="senha">Senha</label><input type="password"
+					class="form-control" name="senha" id="senha" required
+					maxlength="100" placeholder="Insira sua senha">
+					 <p></p>
+					 <label
+					for="tipo">Qual seu tipo de perfil:</label> <select name="tipo"
+					id="tipo">
+					<option value="1">Empresa</option>
+					<option value="2">Cliente</option>
+					<option value="3">Transportador</option>
+				</select>
+				<p></p>
 
-	<form action="CadastroUsuario.do" method=post>
-		<label for="nome">Nome</label><input type="nome"
-				class="form-control" name="nome" id="nome" required
-				maxlength="100" placeholder="Insira seu nome">
-		<label for="email">E-mail</label><input type="email"
-				class="form-control" name="email" id="email" required
-				maxlength="100" placeholder="Insira seu email">
-		<label for="senha">Senha</label><input
-				type="password" class="form-control" name="senha" id="senha"
-				required maxlength="100" placeholder="Insira sua senha">
-		<label for="tipo">Qual seu tipo de perfil:</label> <select
-						name="tipo" id="tipo">
-				<option value="1">Empresa</option>
-				<option value="2">Cliente</option>
-				<option value="3">Transportador</option>
-					</select>
-					<p> </p>
-					
-		<label for="banco">Banco</label><input type="banco"
-				class="form-control" name="banco" id="banco" required
-				maxlength="100" placeholder="Insira o nome do seu banco">
-		<label for="conta">Conta</label><input type="conta"
-				class="form-control" name="conta" id="conta" required
-				maxlength="100" placeholder="Insira o número da sua conta. Ex: xxxxxx-x">
-		<label for="agencia">Agência</label><input type="agencia"
-				class="form-control" name="agencia" id="agencia" required
-				maxlength="100" placeholder="Insira o número da sua agência. Ex: xxx">
-			<button class="btn btn-outline-success my-2 my-sm-0" name="locais"
-						type="submit">Criar</button>
-	</form>
-	
+				<label for="banco">Banco</label><input type="banco"
+					class="form-control" name="banco" id="banco" required
+					maxlength="100" placeholder="Insira o nome do seu banco"> <label
+					for="conta">Conta</label><input type="conta" class="form-control"
+					name="conta" id="conta" required maxlength="100"
+					placeholder="Insira o nÃºmero da sua conta. Ex: xxxxxx-x"> <label
+					for="agencia">AgÃªncia</label><input type="agencia"
+					class="form-control" name="agencia" id="agencia" required
+					maxlength="100"
+					placeholder="Insira o nÃºmero da sua agÃªncia. Ex: xxx">
+					<br>
+				<button class="btn btn-success" name="locais"
+					type="submit">Criar</button>
+					<a href="index.html" class="btn btn-danger">Cancelar</a>
+			</form>
+			<br>
+		</div>
+	</div>
+
 </body>
 </html>

@@ -1,14 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page import="model.Usuarios"%>
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Usuário logado</title>
+<meta charset="UTF-8">
+<title>Cadastro</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -29,9 +23,8 @@
 	crossorigin="anonymous">
 <link href="assets/css/index.css" rel="stylesheet">
 </head>
-
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
 		<a style="color: white" class="navbar-brand" href="index.html">Recicla
 			Sampa</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -71,34 +64,36 @@
 			</form>
 		</div>
 	</nav>
- 	<br>
 	<div class="row">
-		<div style="background-color: #F0F8FF; border-radius: 15px"
-			class="container">
-			<%
-				Usuarios usuario = (Usuarios) request.getAttribute("usuario");
-			%>
-			<!-- Container Principal -->
-			<br>
-			<h3 class="page-header">Visualizar login</h3>
-			<div class="row">
-				<div class="col-md-12">
-					<p>
-						<strong>Bem vindo:</strong>
-						<%=usuario.getNome()%>
-					</p>
-				</div>
-			</div>
-			<a href="ListarCarteira.do" class="btn btn-success">Verificar
-				saldo da carteira digital</a> <a href="Logout.do" class="btn btn-danger">Voltar</a>
-			<br>
-			<br>
-			<div id="actions" class="row">
-				<div class="col-md-12"></div>
-			</div>
+		<div style="background-color: #F0F8FF; border-radius: 15px" class="container">
+		<h1>Cadastrar relatório</h1>
+		<br>
+			<form action="CadastroRelatorio.do" method=post>
+				<label for="bairro">Bairro</label><input type="bairro"
+					class="form-control" name="bairro" id="bairro" required maxlength="100"
+					placeholder="Insira o bairro">
+				<label for="qntLixo">Quantidade de lixo(em toneladas)</label><input type="qntLixo"
+					class="form-control" name="qntLixo" id="qntLixo" required maxlength="100"
+					placeholder="Insira a quantidade de lixo reciclado">
+					<label for="tipo">Escolha um tipo de lixo:</label> <select
+						name="tipo" id="tipo">
+						<option value="1">Plástico</option>
+						<option value="2">Vidro</option>
+						<option value="3">Alumínio</option>
+						<option value="4">Papel ou Papelão</option>
+						<option value="5">Metal</option>
+						<option value="6">Baterias</option>
+						<option value="7">Orgânico</option>
+					</select>
+					<br>
+				<label for="descricao">Descrição</label><input type="descricao"
+					class="form-control" name="descricao" id="descricao" required maxlength="300"
+					placeholder="Insira relatório">
+				<button class="btn btn-outline-success my-2 my-sm-0" name="Inserir"
+						type="submit">Enviar</button>
+			</form>
 		</div>
 	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

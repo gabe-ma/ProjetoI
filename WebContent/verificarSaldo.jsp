@@ -1,15 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@page import="model.Carteira" %>
-<%@page import="model.Usuarios" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="model.Carteira"%>
+<%@page import="model.Usuarios"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Carteira Digital</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carteira Digital</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -37,7 +38,7 @@
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#conteudoNavbarSuportado"
 			aria-controls="conteudoNavbarSuportado" aria-expanded="false"
-			aria-label="Alterna navegação">
+			aria-label="Alterna navega磯">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
@@ -59,6 +60,10 @@
 				<li class="nav-item dropdown"><a style="color: white"
 					class="nav-link" href="cliente.html">Recicle Seu Lixo
 						Domiciliar</a></li>
+				<li class="nav-item dropdown"><a style="color: white"
+					class="nav-link" href="cadastroRelatorio.html">Cadastrar relatório</a></li>
+				<li class="nav-item dropdown"><a style="color: white"
+					class="nav-link" href="listarRelatorio.jsp">Listar relatórios</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
@@ -67,33 +72,38 @@
 			</form>
 		</div>
 	</nav>
-    <%Carteira cart = (Carteira)request.getAttribute("cart"); %>
-        <!-- Barra superior com os menus de navegaÃ§Ã£o -->
+	<br>
+	<%
+		Carteira cart = (Carteira) request.getAttribute("cart");
+	%>
 
-        <!-- Container Principal -->
-        <div id="main" class="container">
-            <h3 class="page-header">Carteira Digital</h3>
-            <div class="row">
-                <div class="col-md-12">
-                    <p><strong>Seu saldo atual é de: </strong>
-                    </p>
-                    <p>
-                        R$<%=cart.getSaldo() %>
-                    </p>
-                </div>
-            </div>
-            <div id="actions" class="row">
-                <div class="col-md-12">
-                    <a href="RetirarDinheiro.do" class="btn btn-default">Retirar dinheiro</a>
-                </div>
-            </div>
-            <div id="actions" class="row">
-                <div class="col-md-12">
-                    <a href="Logout.do" class="btn btn-default">Voltar</a>
-                </div>
-            </div>
-        </div>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+	<div class="row">
+		<!-- Barra superior com os menus de navegaÃƒÂ§ÃƒÂ£o -->
+
+		<!-- Container Principal -->
+		<div style="background-color: #F0F8FF; border-radius: 15px"
+			class="container">
+			<h3 class="page-header">Carteira Digital</h3>
+			<div class="row">
+				<div class="col-md-12">
+					<p>
+						<strong>Seu saldo atual é de:</strong>
+					</p>
+					<p>
+						R$<%=cart.getSaldo()%>
+					</p>
+				</div>
+			</div>
+			<div id="actions" class="row">
+				<div class="col-md-12">
+					<a href="RetirarDinheiro.do" class="btn btn-success">Retirar
+						dinheiro</a> <a href="Logout.do" class="btn btn-danger">Voltar</a> <br>
+					<br>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

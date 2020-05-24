@@ -10,33 +10,32 @@ import model.Usuarios;
 
 public class CarteiraDAO {
 
-	public Carteira criar() {
+	public int criar(Carteira cart) {
 		String sqlCarteira = "INSERT INTO carteira (saldo) values (?)";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stmCart = conn.prepareStatement(sqlCarteira);) {
 			stmCart.setDouble(1, 00.00);
 			stmCart.execute();
+			String sqlQuery = "SELECT LAST_INSERT_ID()";
+			try (PreparedStatement stm2 = conn.prepareStatement(sqlQuery); ResultSet rs = stm2.executeQuery();) {
+				if (rs.next()) {
+					cart.setIdCarteira(rs.getInt(1));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		
+		return cart.getIdCarteira();
 	}
 
 	public Carteira verificarSaldo(Usuarios usuario, Carteira cart) {
-		String sqlIdCart = "SELECT idcarteira FROM usuario WHERE nome = ?";
-		try (Connection conn = ConnectionFactory.obtemConexao();
-				PreparedStatement stmCart = conn.prepareStatement(sqlIdCart);){
-			stmCart.setInt(1, usuario.getCarteira());
-			try (ResultSet rs = stmCart.executeQuery();){
-				if(rs.next()) {
-					usuario.setCarteira(rs.getInt("idcarteira"));
-				} else {
-				usuario.setCarteira(0);
-				}
-			}
 		
 		String sqlSaldo = "SELECT saldo FROM carteira WHERE idcarteira = ?";
-		try (PreparedStatement stm2 = conn.prepareStatement(sqlSaldo);){
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm2 = conn.prepareStatement(sqlSaldo);){
 			stm2.setInt(1, usuario.getCarteira());
 			try (ResultSet rs2 = stm2.executeQuery();){
 				if (rs2.next()) {
@@ -45,22 +44,22 @@ public class CarteiraDAO {
 					cart.setSaldo(0.00);
 				}
 			}
-		}
-		
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return cart;
 	}
 
-	public Carteira retirarDinheiro(Usuarios usuario, Carteira cart) {
-		String sqlUp = "UPDATE carteira SET saldo = 0.00 WHERE idcarteira = ?;";
+	public void retirarDinheiro(Usuarios usuario) {
+		String sqlUp = "UPDATE carteira SET saldo = 0.00 WHERE idcarteira = ?";
 		try(Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlUp);){
 			stm.setInt(1, usuario.getCarteira());
+			stm.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return cart;
 	}
 }

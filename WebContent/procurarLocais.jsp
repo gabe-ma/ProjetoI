@@ -62,7 +62,7 @@
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#conteudoNavbarSuportado"
 			aria-controls="conteudoNavbarSuportado" aria-expanded="false"
-			aria-label="Alterna navegaÁ„o">
+			aria-label="Alterna navegaÁ£Ø">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
@@ -76,7 +76,7 @@
 						aria-labelledby="navbarDropdown">
 						<a style="color: white" class="dropdown-item" href="empresa.html">Mapa
 							de Coleta</a> <a style="color: white" class="dropdown-item"
-							href="procurarLocais.jsp">Materiais Recicl·veis</a>
+							href="procurarLocais.jsp">Materiais Recicl√°veis</a>
 						<div class="dropdown-divider"></div>
 						<a style="color: white" class="dropdown-item" href="#">Algo
 							mais aqui</a>
@@ -84,6 +84,10 @@
 				<li class="nav-item dropdown"><a style="color: white"
 					class="nav-link" href="cliente.html">Recicle Seu Lixo
 						Domiciliar</a></li>
+				<li class="nav-item dropdown"><a style="color: white"
+					class="nav-link" href="cadastroRelatorio.html">Cadastrar relat√≥rio</a></li>
+				<li class="nav-item dropdown"><a style="color: white"
+					class="nav-link" href="listarRelatorio.jsp">Listar relat√≥rios</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
@@ -94,30 +98,29 @@
 	</nav>
 	<br>
 	<div class="row">
-		<div class="container">
+		<div style="background-color: #F0F8FF; border-radius: 15px" class="container">
 			<form action="<%=request.getContextPath()%>/ManterLocais.do"
 				method=post>
+				<br>
 				<div class="form-group">
-
 					<label for="tipo">Escolha um tipo de lixo:</label> <select
 						name="tipo" id="tipo">
-						<option value="1">Pl·stico</option>
+						<option value="1">Pl√°stico</option>
 						<option value="2">Vidro</option>
-						<option value="3">AlumÌnio</option>
-						<option value="4">Papel ou Papel„o</option>
+						<option value="3">Alum√≠nio</option>
+						<option value="4">Papel ou Papel√£o</option>
 						<option value="5">Metal</option>
 						<option value="6">Baterias</option>
-						<option value="7">Org‚nico</option>
+						<option value="7">Org√¢nico</option>
 					</select>
 					<button class="btn btn-outline-success my-2 my-sm-0" name="locais"
 						type="submit">Pesquisar ID do Lixo</button>
 				</div>
 			</form>
-
 			<table style="background-color: white;" class="table table-striped">
 				<tr style="background-color: #F0F8FF;">
 					<th><h3>Rua</h3></th>
-					<th><h3>N∫</h3></th>
+					<th><h3>N¬∫</h3></th>
 					<th><h3>Bairro</h3></th>
 					<th><h3>Telefone</h3></th>
 					<th><h3>Quant Lixo</h3></th>
@@ -132,8 +135,8 @@
 					</tr>
 				</jstl:forEach>
 			</table>
+			<br>
 		</div>
 	</div>
-	<%-- <%= for () %>> --%>
 </body>
 </html>

@@ -34,7 +34,7 @@
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#conteudoNavbarSuportado"
 			aria-controls="conteudoNavbarSuportado" aria-expanded="false"
-			aria-label="Alterna navegação">
+			aria-label="Alterna navega磯">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
@@ -56,6 +56,10 @@
 				<li class="nav-item dropdown"><a style="color: white"
 					class="nav-link" href="cliente.html">Recicle Seu Lixo
 						Domiciliar</a></li>
+				<li class="nav-item dropdown"><a style="color: white"
+					class="nav-link" href="cadastroRelatorio.html">Cadastrar relatório</a></li>
+				<li class="nav-item dropdown"><a style="color: white"
+					class="nav-link" href="listarRelatorio.jsp">Listar relatórios</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search"
@@ -64,22 +68,33 @@
 			</form>
 		</div>
 	</nav>
-	<h1>Login</h1>
-	<form action="LoginUsuario.do" method="post">
-		<div class="Login">
-			<label for="email">E-mail</label><input type="email"
-				class="form-control" name="email" id="email" required
-				maxlength="100" placeholder="Insira seu email"> 
-			<label for="senha">Senha</label><input
-				type="password" class="form-control" name="senha" id="senha"
-				required maxlength="100" placeholder="Insira sua senha">
+	<br>
+	<br>
+	<br>
+	<div class="row">
+		<div style="background-color: #F0F8FF; border-radius: 15px" class="container">
+			<h1>Login</h1>
+			<form action="LoginUsuario.do" method="post">
+				<div class="Login">
+					<label for="email">E-mail</label><input type="email"
+						class="form-control" name="email" id="email" required
+						maxlength="100" placeholder="Insira seu email"> <label
+						for="senha">Senha</label><input type="password"
+						class="form-control" name="senha" id="senha" required
+						maxlength="100" placeholder="Insira sua senha">
+						<br>
 
-			<button type="submit" class="btn btn-primary" name="acao"
-				value="Criar">Salvar</button>
-			<a href="index.html" class="btn btn-default">Cancelar</a>
+					<button type="submit" class="btn btn-primary" name="acao"
+						value="Criar">Logar</button>
+					<a href="index.html" class="btn btn-danger">Cancelar</a>
+				</div>
+			</form>
+
+			<p>
+				Você não tem um cadastro? <a href="cadastroUsuario.html">Cadastre-se
+					aqui</a>
+			</p>
 		</div>
-	</form>
-	
-	<p>Você não tem um cadastro? <a href="cadastroUsuario.html">Cadastre-se aqui</a></p>
+	</div>
 </body>
 </html>
