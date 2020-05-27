@@ -1,6 +1,6 @@
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,7 +87,8 @@
 					class="nav-link" href="cliente.html">Recicle Seu Lixo
 						Domiciliar</a></li>
 				<li class="nav-item dropdown"><a style="color: white"
-					class="nav-link" href="cadastroRelatorio.html">Cadastrar relatório</a></li>
+					class="nav-link" href="cadastroRelatorio.html">Cadastrar
+						relatório</a></li>
 				<li class="nav-item dropdown"><a style="color: white"
 					class="nav-link" href="listarRelatorio.jsp">Listar relatórios</a></li>
 			</ul>
@@ -98,13 +99,16 @@
 			</form>
 		</div>
 	</nav>
-	
-	<form action="<%=request.getContextPath()%>/ManterRelatorio.do"
+	<br>
+	<div class="row">
+		<div style="background-color: #F0F8FF; border-radius: 15px"
+			class="container">
+			<form action="<%=request.getContextPath()%>/ManterRelatorio.do"
 				method=post>
 				<br>
 				<div class="form-group">
-					<label for="tipo">Escolha um bairro:</label> <select
-						name="tipo" id="tipo">
+					<label for="tipo">Escolha um bairro:</label> <select name="tipo"
+						id="tipo">
 						<option value="Mooca">Mooca</option>
 						<option value="Vila Leopoldina">Vila Leopoldina</option>
 						<option value="Presidente Altino">Presidente Altino</option>
@@ -115,8 +119,8 @@
 						type="submit">Listar relatórios</button>
 				</div>
 			</form>
-			
-		<table style="background-color: white;" class="table table-striped">
+
+			<table style="background-color: white;" class="table table-striped">
 				<tr style="background-color: #F0F8FF;">
 					<th><h3>Bairro</h3></th>
 					<th><h3>Quantidade de Lixo(t)</h3></th>
@@ -132,6 +136,8 @@
 					</tr>
 				</jstl:forEach>
 			</table>
-
+			<br>
+		</div>
+	</div>
 </body>
 </html>
