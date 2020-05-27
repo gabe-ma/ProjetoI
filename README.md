@@ -5,6 +5,9 @@ temos também um acesso a uma tabela do banco de dados que mostra todos os locai
 telefone e a quantidade de lixo).
 
 ### Java WEB
+Tomcat 8.5
 
 
 ### Java Settings
+Eclipse IDE for Enterprise Java Developers - 2020-03
+Java 64 bits
